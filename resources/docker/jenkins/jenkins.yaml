@@ -29,7 +29,7 @@ unclassified:
           modernSCM:
             scm:
               git:
-                remote: "https://github.com/tadeumendonca/quick-example-of-testing-in-nodejs.git"
+                remote: "https://github.com/tadeumendonca/jenkins-casc.git"
 jobs:
     - script: >
         multibranchPipelineJob('Sample Application') {
