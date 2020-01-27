@@ -16,6 +16,25 @@ def call(Map pipelineParams) {
                     }
                 }
             }
+            stage('Test') {
+                steps{
+                    script{
+                        sh 'npm run cover'
+                    }
+                }
+                post {
+                    always {
+                    publishHTML target: [
+                        allowMissing         : false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll             : true,
+                        reportDir            : 'reports/coverage/lcov-report',
+                        reportFiles          : 'index.html',
+                        reportName           : 'Test Report'
+                    ]
+                    }
+                }
+            }
         }
     }
 }
