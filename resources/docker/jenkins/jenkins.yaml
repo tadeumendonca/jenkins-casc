@@ -21,6 +21,15 @@ tool:
                 - nodeJSInstaller:
                     id: "10.18.1"
                     npmPackagesRefreshHours: 48
+unclassified:
+  globalLibraries:
+    libraries:
+      - name: "my-pipeline-library"
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                remote: "https://github.com/tadeumendonca/quick-example-of-testing-in-nodejs.git"
 jobs:
     - script: >
         multibranchPipelineJob('Sample Application') {
