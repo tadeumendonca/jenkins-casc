@@ -27,7 +27,7 @@ jobs:
             branchSources {
                 git {
                     id('1')
-                    remote('ssh://git@github.com:tadeumendonca/quick-example-of-testing-in-nodejs.git')
+                    remote('https://github.com/tadeumendonca/quick-example-of-testing-in-nodejs.git')
                 }
             }
             orphanedItemStrategy {
