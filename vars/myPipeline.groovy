@@ -16,7 +16,7 @@ def call(Map pipelineParams) {
                     }
                 }
             }
-            stage('Test') {
+            stage('Unit Test') {
                 steps{
                     script{
                         sh 'npm run cover'
@@ -24,14 +24,7 @@ def call(Map pipelineParams) {
                 }
                 post {
                     always {
-                    publishHTML target: [
-                        allowMissing         : false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll             : true,
-                        reportDir            : 'reports/coverage/lcov-report',
-                        reportFiles          : 'index.html',
-                        reportName           : 'Test Report'
-                    ]
+                    step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/cobertura-coverage.xml'])
                     }
                 }
             }
