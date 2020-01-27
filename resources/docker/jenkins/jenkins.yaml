@@ -36,7 +36,7 @@ jobs:
             branchSources {
                 git {
                     id('1')
-                    remote('https://github.com/tadeumendonca/quick-example-of-testing-in-nodejs.git')
+                    remote('https://github.com/tadeumendonca/node-sample-app-with-test.git')
                 }
             }
             orphanedItemStrategy {
