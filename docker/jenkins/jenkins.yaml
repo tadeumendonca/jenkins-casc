@@ -1,0 +1,38 @@
+jenkins:
+  systemMessage: "Sample CI Server"
+  clouds:
+    - docker:
+        name: "docker"
+        dockerApi:
+          dockerHost:
+            uri: "unix:///var/run/docker.sock"
+tool:
+  git:
+    installations:
+      - home: "git"
+        name: "Default"
+  nodejs:
+    installations:
+      - name: "NodeJS"
+        home: ""
+        properties:
+          - installSource:
+              installers:
+                - nodeJSInstaller:
+                    id: "10.18.1"
+                    npmPackagesRefreshHours: 48
+jobs:
+    - script: >
+        multibranchPipelineJob('Sample Application') {
+            branchSources {
+                git {
+                    id('1')
+                    remote('ssh://git@github.com:tadeumendonca/quick-example-of-testing-in-nodejs.git')
+                }
+            }
+            orphanedItemStrategy {
+                discardOldItems {
+                    numToKeep(20)
+                }
+            }
+        }
