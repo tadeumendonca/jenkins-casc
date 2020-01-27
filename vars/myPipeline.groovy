@@ -19,7 +19,7 @@ def call(Map pipelineParams) {
             stage('Unit Test') {
                 steps{
                     script{
-                        sh 'npm run cover'
+                        sh 'npm run test'
                     }
                 }
                 post {
