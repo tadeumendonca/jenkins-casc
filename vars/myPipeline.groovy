@@ -1,7 +1,7 @@
 def call(Map pipelineParams) {
     environment {
-        IMAGE_NAME = "${pipelineParams.appName}:${env.BUILD_ID}"
-        BUILD_CONTAINER_ID = "test_${env.BUILD_TIMESTAMP}"
+        IMAGE_NAME = "${pipelineParams.appName}:${BUILD_ID}"
+        BUILD_CONTAINER_ID = "test_${BUILD_TIMESTAMP}"
     }
     pipeline {
         agent any
