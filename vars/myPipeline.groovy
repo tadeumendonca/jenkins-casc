@@ -48,7 +48,12 @@ def call(Map pipelineParams) {
                     }
                 }
             }
-            stage('Promote to Stage?') {
+            stage('Promote to STAGE?') {
+                steps{
+                    input 'Promote to Stage?'
+                }
+            }
+            stage('Promote to PROD?') {
                 steps{
                     input 'Promote to Stage?'
                 }
