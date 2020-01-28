@@ -12,13 +12,11 @@ def call(Map pipelineParams) {
         stages {
             stage('Set Build Vars') {
                 steps {
-                    script{
-                        setDockerBuildVars(
-                            appName: "${pipelineParams.appName}",
-                            buildId: "${BUILD_ID}", 
-                            buildTimestamp: "${BUILD_TIMESTAMP}"
-                        )
-                    }   
+                    setDockerBuildVars(
+                        appName: "${pipelineParams.appName}",
+                        buildId: "${BUILD_ID}", 
+                        buildTimestamp: "${BUILD_TIMESTAMP}"
+                    ) 
                 }
             }
             stage('Checkout Git') {
