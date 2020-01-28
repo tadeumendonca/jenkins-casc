@@ -3,7 +3,7 @@ def call(Map stageParams) {
     
     def list = []
 
-    data.split("\n").each {item ->
+    imageListString.split("\n").each {item ->
         list.put(item)
     }
 
