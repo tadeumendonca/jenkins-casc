@@ -6,6 +6,5 @@ def call(Map stageParams) {
     echo "ARTIFACT_NAME=${ARTIFACT_NAME}"
     echo "IMAGE_NAME=${IMAGE_NAME}"
     echo "BUILD_CONTAINER_ID=${BUILD_CONTAINER_ID}"
-
-    currentBuild.result = 'SUCCESS'
+    
   }
