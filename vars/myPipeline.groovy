@@ -25,12 +25,12 @@ def call(Map pipelineParams) {
             }
             stage('Build') {
                 steps{
-                    dockerBuild(appName: "${env.IMAGE_NAME}")
+                    dockerBuild(imageName: "${env.IMAGE_NAME}")
                 }
             }
             stage('Unit Test') {
                 steps{
-                    dockerNodeUnitTest(appName: "${env.IMAGE_NAME}")
+                    dockerNodeUnitTest(imageName: "${env.IMAGE_NAME}")
                 }
                 post {
                     always {
@@ -68,8 +68,8 @@ def call(Map pipelineParams) {
                 steps{
                     script{
                         sh "docker save ${env.IMAGE_NAME} | gzip -c > ${env.ARTIFACT_NAME}"
-                        sh "docker image rm ${env.IMAGE_NAME}"
                         sh "docker rm ${env.BUILD_CONTAINER_ID}"
+                        dockerRemoveImages(appName: "${pipelineParams.appName}", imageName: "${env.IMAGE_NAME}")
                     }
                 }
                 post {
