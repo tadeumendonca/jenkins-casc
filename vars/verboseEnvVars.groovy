@@ -1,3 +1,3 @@
 def call(Map stageParams) { 
-    sh 'printenv'
+    sh(script: 'env|sort', returnStdout: true)
   }
