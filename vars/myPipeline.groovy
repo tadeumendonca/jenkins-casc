@@ -64,6 +64,14 @@ def call(Map pipelineParams) {
                     input 'Promote to Stage?'
                 }
             }
+            stage('Deploy PROD') {
+                steps{
+                    script{
+                        sh "./compose-down.sh PROD"
+                        sh "./compose-up.sh PROD"
+                    }
+                }
+            }
             stage('Clean Items') {
                 steps{
                     script{
