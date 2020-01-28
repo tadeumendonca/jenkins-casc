@@ -48,6 +48,15 @@ def call(Map pipelineParams) {
                     }
                 }
             }
+            stage('Promote to Stage?') {
+                steps{
+                    script{
+                        input {
+                            message "Promote to STAGE?"
+                            ok "Yes"}
+                    }
+                }
+            }
             stage('Clean Items') {
                 steps{
                     script{
