@@ -6,7 +6,7 @@ def call(Map pipelineParams) {
     pipeline {
         agent any
         stages {
-            stage('Verbose Env Vars') {
+            stage('Set Build Vars') {
                 agent { label 'master' }
                 steps {
                     script{
