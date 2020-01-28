@@ -22,6 +22,9 @@ tool:
                     id: "10.18.1"
                     npmPackagesRefreshHours: 48
 unclassified:
+  buildTimestamp:
+    timezone: "America/Sao_Paulo"
+    pattern: "yyyyMMddHHmmss"
   globalLibraries:
     libraries:
       - name: "my-pipeline-library"
