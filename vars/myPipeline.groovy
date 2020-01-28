@@ -72,12 +72,12 @@ def call(Map pipelineParams) {
                         dockerRemoveImages(appName: "${pipelineParams.appName}", imageName: "${env.IMAGE_NAME}")
                     }
                 }
-                post {
-                    // always {
-                        // archiveArtifacts artifacts: "${env.ARTIFACT_NAME}", fingerprint: true
-                        // sh "rm ${env.ARTIFACT_NAME}"
-                    // }
-                }
+                // post {
+                //     always {
+                //         archiveArtifacts artifacts: "${env.ARTIFACT_NAME}", fingerprint: true
+                //         sh "rm ${env.ARTIFACT_NAME}"
+                //     }
+                // }
             }
         }
     }
