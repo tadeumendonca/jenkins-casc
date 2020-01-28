@@ -21,7 +21,9 @@ def call(Map pipelineParams) {
             stage('Unit Test') {
                 steps{
                     script{
-                        sh "docker run -p 3001:3000 --name ${env.BUILD_CONTAINER_ID} express-app-testing-demo npm run test && docker cp ${env.BUILD_CONTAINER_ID}:/app/coverage ${env.WORKSPACE}/coverage && docker rm ${env.BUILD_CONTAINER_ID}"
+                        sh "docker run -p 3001:3000 --name ${env.BUILD_CONTAINER_ID} express-app-testing-demo npm run test"
+                        sh "docker cp ${env.BUILD_CONTAINER_ID}:/app/coverage ${env.WORKSPACE}/coverage"
+                        sh "docker rm ${env.BUILD_CONTAINER_ID}"
                     }
                 }
                 post {
