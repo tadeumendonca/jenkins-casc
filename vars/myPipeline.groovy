@@ -10,7 +10,6 @@ def call(Map pipelineParams) {
                 agent { label 'master' }
                 steps {
                     script{
-                        
                         env.IMAGE_NAME="${pipelineParams.appName}:${BUILD_ID}"
                         env.BUILD_CONTAINER_ID="test_${BUILD_TIMESTAMP}"
                         echo "IMAGE_NAME=${env.IMAGE_NAME}"
