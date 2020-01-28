@@ -6,11 +6,16 @@ def call(Map pipelineParams) {
     pipeline {
         agent any
         options {
-            skipDefaultCheckout(false)
+            skipDefaultCheckout(true)
             disableConcurrentBuilds()
             timeout(time: 1, unit: 'HOURS') 
         }
         stages {
+            stage('Checkout Git') {
+                steps{
+                    gitCheckout()
+                }
+            }
             stage('Prepare Env') {
                 steps {
                     loadProperties()
