@@ -25,12 +25,12 @@ def call(Map pipelineParams) {
             }
             stage('Build') {
                 steps{
-                    dockerBuild(appName: "${pipelineParams.appName}")
+                    dockerBuild(appName: "${env.IMAGE_NAME}")
                 }
             }
             stage('Unit Test') {
                 steps{
-                    dockerNodeUnitTest(appName: "${pipelineParams.appName}")
+                    dockerNodeUnitTest(appName: "${env.IMAGE_NAME}")
                 }
                 post {
                     always {
