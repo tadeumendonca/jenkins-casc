@@ -24,7 +24,7 @@ tool:
 unclassified:
   buildTimestamp:
     timezone: "America/Sao_Paulo"
-    pattern: "yyyyMMddHHmmss"
+    pattern: "yyyyMMddHHmmssSSS"
   globalLibraries:
     libraries:
       - name: "my-pipeline-library"
