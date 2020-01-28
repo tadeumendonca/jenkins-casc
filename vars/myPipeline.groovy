@@ -5,6 +5,9 @@ def call(Map pipelineParams) {
     }
     pipeline {
         agent any
+        options {
+            timeout(time: 1, unit: 'HOURS') 
+        }
         stages {
             stage('Set Build Vars') {
                 agent { label 'master' }
