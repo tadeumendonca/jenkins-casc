@@ -1,6 +1,12 @@
 def call(Map stageParams) { 
-    def imageList = sh label: 'Docker List Unused Images', returnStdout: true, script: "docker images --filter \"before=${stageParams.imageName}\" --format \"{{.ID}}\"  ${stageParams.appName}"
+    def imageListString = sh label: 'Docker List Unused Images', returnStdout: true, script: "docker images --filter \"before=${stageParams.imageName}\" --format \"{{.ID}}\"  ${stageParams.appName}"
     
+    def list = []
+
+    data.split("\n").each {item ->
+        list.put(item)
+    }
+
     for (image in imageList) {
         def statusCode = sh label: 'Remove Image', returnStatus: true, script: "docker image rm ${image}"
         

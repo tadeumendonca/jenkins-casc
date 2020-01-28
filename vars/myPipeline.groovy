@@ -23,59 +23,59 @@ def call(Map pipelineParams) {
                     verboseEnvVars()
                 }
             }
-            stage('Build') {
-                steps{
-                    dockerBuild(imageName: "${env.IMAGE_NAME}")
-                }
-            }
-            stage('Unit Test') {
-                steps{
-                    dockerNodeUnitTest(imageName: "${env.IMAGE_NAME}")
-                }
-                post {
-                    always {
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/cobertura-coverage.xml'])
-                    }
-                }
-            }
-            stage('Promote to STAGE?') {
-                steps{
-                    promoteEnv(environment: 'STAGE')
-                }
-            }
-            stage('Deploy STAGE') {
-                steps{
-                    script{
-                        sh "./compose-down.sh STAGE"
-                        sh "./compose-up.sh STAGE"
-                    }
-                }
-            }
-            stage('Promote to PROD?') {
-                steps{
-                    promoteEnv(environment: 'PROD')
-                }
-            }
-            stage('Deploy PROD') {
-                steps{
-                    script{
-                        sh "./compose-down.sh PROD"
-                        sh "./compose-up.sh PROD"
-                    }
-                }
-            }
+            // stage('Build') {
+            //     steps{
+            //         dockerBuild(imageName: "${env.IMAGE_NAME}")
+            //     }
+            // }
+            // stage('Unit Test') {
+            //     steps{
+            //         dockerNodeUnitTest(imageName: "${env.IMAGE_NAME}")
+            //     }
+            //     post {
+            //         always {
+            //             step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/cobertura-coverage.xml'])
+            //         }
+            //     }
+            // }
+            // stage('Promote to STAGE?') {
+            //     steps{
+            //         promoteEnv(environment: 'STAGE')
+            //     }
+            // }
+            // stage('Deploy STAGE') {
+            //     steps{
+            //         script{
+            //             sh "./compose-down.sh STAGE"
+            //             sh "./compose-up.sh STAGE"
+            //         }
+            //     }
+            // }
+            // stage('Promote to PROD?') {
+            //     steps{
+            //         promoteEnv(environment: 'PROD')
+            //     }
+            // }
+            // stage('Deploy PROD') {
+            //     steps{
+            //         script{
+            //             sh "./compose-down.sh PROD"
+            //             sh "./compose-up.sh PROD"
+            //         }
+            //     }
+            // }
             stage('Clean Items') {
                 steps{
                     script{
-                        sh "docker save ${env.IMAGE_NAME} | gzip -c > ${env.ARTIFACT_NAME}"
-                        sh "docker rm ${env.BUILD_CONTAINER_ID}"
+                        // sh "docker save ${env.IMAGE_NAME} | gzip -c > ${env.ARTIFACT_NAME}"
+                        // sh "docker rm ${env.BUILD_CONTAINER_ID}"
                         dockerRemoveImages(appName: "${pipelineParams.appName}", imageName: "${env.IMAGE_NAME}")
                     }
                 }
                 post {
                     always {
-                        archiveArtifacts artifacts: "${env.ARTIFACT_NAME}", fingerprint: true
-                        sh "rm ${env.ARTIFACT_NAME}"
+                        // archiveArtifacts artifacts: "${env.ARTIFACT_NAME}", fingerprint: true
+                        // sh "rm ${env.ARTIFACT_NAME}"
                     }
                 }
             }
