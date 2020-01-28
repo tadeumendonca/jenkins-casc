@@ -42,7 +42,7 @@ def call(Map pipelineParams) {
                     }
                 }
             }
-            stage('Remove Temporary Items') {
+            stage('Remove Temp Items') {
                 steps{
                     script{
                         sh "docker image rm ${env.IMAGE_NAME}"
