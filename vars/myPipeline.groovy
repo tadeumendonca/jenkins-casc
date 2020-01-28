@@ -54,6 +54,7 @@ def call(Map pipelineParams) {
             stage('Deploy STAGE') {
                 steps{
                     script{
+                        sh "./compose-down.sh STAGE"
                         sh "./compose-up.sh STAGE"
                     }
                 }
