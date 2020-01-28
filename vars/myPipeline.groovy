@@ -34,12 +34,19 @@ def call(Map pipelineParams) {
                     script{
                         sh "docker run -p 3001:3000 --name ${env.BUILD_CONTAINER_ID} express-app-testing-demo npm run test"
                         sh "docker cp ${env.BUILD_CONTAINER_ID}:/app/coverage ${env.WORKSPACE}/coverage"
-                        sh "docker rm ${env.BUILD_CONTAINER_ID}"
                     }
                 }
                 post {
                     always {
                     step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/cobertura-coverage.xml'])
+                    }
+                }
+            }
+            stage('Remove Temporary Items') {
+                steps{
+                    script{
+                        sh "docker image rm ${env.IMAGE_NAME}"
+                        sh "docker rm ${env.BUILD_CONTAINER_ID}"
                     }
                 }
             }
