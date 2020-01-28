@@ -19,7 +19,7 @@ def call(Map pipelineParams) {
             stage('Unit Test') {
                 steps{
                     script{
-                        sh "docker run -p 3001:3000 -v \"$${env.WORKSPACE}/coverage:/app/coverage\" express-app-testing-demo npm run test"
+                        sh "docker run -p 3001:3000 -v \"${env.WORKSPACE}/coverage:/app/coverage\" express-app-testing-demo npm run test"
                     }
                 }
                 post {
