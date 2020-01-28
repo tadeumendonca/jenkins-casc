@@ -1,6 +1,6 @@
 def call(Map pipelineParams) {
     environment {
-        BUILD_TAG = "${pipelineParams.appName}:${env.BUILD_ID}"
+        IMAGE_NAME = "${pipelineParams.appName}:${env.BUILD_ID}"
     }
     pipeline {
         agent any
@@ -13,7 +13,7 @@ def call(Map pipelineParams) {
             stage('Build') {
                 steps{
                     script{
-                        sh "docker build -t ${BUILD_TAG} ."
+                        sh "docker build -t ${IMAGE_NAME} ."
                     }
                 }
             }
