@@ -13,7 +13,7 @@ def call(Map pipelineParams) {
                         env.ARTIFACT_NAME="${pipelineParams.appName}-${BUILD_ID}"
                         env.IMAGE_NAME="${pipelineParams.appName}:${BUILD_ID}"
                         env.BUILD_CONTAINER_ID="test_${BUILD_TIMESTAMP}"
-                        echo "ARTIFACT_NAME=${env.ARTIFACT_NAME}"
+                        echo "ARTIFACT_NAME=${env.ARTIFACT_NAME}.tar.gz"
                         echo "IMAGE_NAME=${env.IMAGE_NAME}"
                         echo "BUILD_CONTAINER_ID=${env.BUILD_CONTAINER_ID}"
                     }   
@@ -47,15 +47,15 @@ def call(Map pipelineParams) {
             stage('Remove Temp Items') {
                 steps{
                     script{
-                        sh "docker save ${env.IMAGE_NAME} | gzip -c > ${env.ARTIFACT_NAME}.tar.gz"
+                        sh "docker save ${env.IMAGE_NAME} | gzip -c > ${env.ARTIFACT_NAME}"
                         sh "docker image rm ${env.IMAGE_NAME}"
                         sh "docker rm ${env.BUILD_CONTAINER_ID}"
                     }
                 }
                 post {
                     always {
-                        archiveArtifacts artifacts: "${env.ARTIFACT_NAME}.tar.gz", fingerprint: true
-                        sh "rm ${env.ARTIFACT_NAME}.tar.gz"
+                        archiveArtifacts artifacts: "${env.ARTIFACT_NAME}", fingerprint: true
+                        sh "rm ${env.ARTIFACT_NAME}"
                     }
                 }
             }
