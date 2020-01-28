@@ -2,7 +2,6 @@ def call(Map pipelineParams) {
     // 
     pipeline {
         agent any
-        agent { dockerfile true }
         stages {
             stage('Checkout Git') {
                 steps{
