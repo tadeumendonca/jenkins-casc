@@ -10,10 +10,10 @@ def call(Map pipelineParams) {
                 agent { label 'master' }
                 steps {
                     script{
-                        env.ARTIFACT_NAME="${pipelineParams.appName}-${BUILD_ID}"
+                        env.ARTIFACT_NAME="${pipelineParams.appName}-${BUILD_ID}.tar.gz"
                         env.IMAGE_NAME="${pipelineParams.appName}:${BUILD_ID}"
                         env.BUILD_CONTAINER_ID="test_${BUILD_TIMESTAMP}"
-                        echo "ARTIFACT_NAME=${env.ARTIFACT_NAME}.tar.gz"
+                        echo "ARTIFACT_NAME=${env.ARTIFACT_NAME}"
                         echo "IMAGE_NAME=${env.IMAGE_NAME}"
                         echo "BUILD_CONTAINER_ID=${env.BUILD_CONTAINER_ID}"
                     }   
