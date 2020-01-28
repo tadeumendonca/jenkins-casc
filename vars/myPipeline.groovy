@@ -51,6 +51,13 @@ def call(Map pipelineParams) {
                     input 'Promote to Stage?'
                 }
             }
+            stage('Deploy STAGE') {
+                steps{
+                    script{
+                        sh "./compose-up.sh STAGE"
+                    }
+                }
+            }
             stage('Promote to PROD?') {
                 steps{
                     input 'Promote to Stage?'
