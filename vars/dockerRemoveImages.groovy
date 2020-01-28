@@ -3,11 +3,7 @@ def call(Map stageParams) {
     
     def list = []
 
-    imageListString.split("\n").each {item ->
-        list.put(item)
-    }
-
-    for (image in imageList) {
+    imageListString.split("\n").each {image ->
         def statusCode = sh label: 'Remove Image', returnStatus: true, script: "docker image rm ${image}"
         
         // Check result
