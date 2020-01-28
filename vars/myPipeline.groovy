@@ -11,7 +11,7 @@ def call(Map pipelineParams) {
             stage('Build') {
                 steps{
                     script{
-                        sh "docker build -t ${pipelineParams.appName} ."
+                        sh "docker build -t ${pipelineParams.appName}:${env.BUILD_ID} ."
                     }
                 }
             }
