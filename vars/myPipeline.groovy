@@ -44,7 +44,7 @@ def call(Map pipelineParams) {
                     }
                 }
             }
-            stage('Remove Temp Items') {
+            stage('Clean Items') {
                 steps{
                     script{
                         sh "docker save ${env.IMAGE_NAME} | gzip -c > ${env.ARTIFACT_NAME}"
