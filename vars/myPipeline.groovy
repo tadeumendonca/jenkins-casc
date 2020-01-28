@@ -11,8 +11,8 @@ def call(Map pipelineParams) {
                 steps {
                     script{
                         sh "printenv | sort"
-                        echo "${env.IMAGE_NAME}"
-                        echo "${env.BUILD_CONTAINER_ID}"
+                        echo "IMAGE_NAME=${env.IMAGE_NAME}"
+                        echo "BUILD_CONTAINER_ID=${env.BUILD_CONTAINER_ID}"
                     }   
                 }
             }
