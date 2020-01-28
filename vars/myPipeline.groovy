@@ -1,6 +1,7 @@
 def call(Map pipelineParams) {
     environment {
         IMAGE_NAME = "${pipelineParams.appName}:${env.BUILD_ID}"
+        BUILD_CONTAINER_ID = "test_${env.BUILD_TIMESTAMP}"
     }
     pipeline {
         agent any
@@ -20,7 +21,7 @@ def call(Map pipelineParams) {
             stage('Unit Test') {
                 steps{
                     script{
-                        sh "docker run -p 3001:3000 --name ephemeral_test express-app-testing-demo npm run test && docker cp ephemeral_test:/app/coverage ${env.WORKSPACE}/coverage && docker rm ephemeral_test"
+                        sh "docker run -p 3001:3000 --name ${env.BUILD_CONTAINER_ID} express-app-testing-demo npm run test && docker cp ${env.BUILD_CONTAINER_ID}:/app/coverage ${env.WORKSPACE}/coverage && docker rm ${env.BUILD_CONTAINER_ID}"
                     }
                 }
                 post {
