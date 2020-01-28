@@ -30,9 +30,7 @@ def call(Map pipelineParams) {
             }
             stage('Build') {
                 steps{
-                    script{
-                        sh "docker build -t ${env.IMAGE_NAME} ."
-                    }
+                    sh "docker build -t ${env.IMAGE_NAME} ."
                 }
             }
             stage('Unit Test') {
