@@ -5,6 +5,11 @@ def call(Map pipelineParams) {
     }
     pipeline {
         agent any
+        node {
+            for(e in env){
+                echo e + " is " + ${e}
+            }
+        }
         stages {
             stage('Checkout Git') {
                 steps{
