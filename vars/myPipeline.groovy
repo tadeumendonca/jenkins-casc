@@ -13,7 +13,7 @@ def call(Map pipelineParams) {
             stage('Build') {
                 steps{
                     script{
-                        sh "docker build -t ${IMAGE_NAME} ."
+                        sh "docker build -t ${env.IMAGE_NAME} ."
                     }
                 }
             }
