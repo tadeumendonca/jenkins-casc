@@ -12,9 +12,7 @@ def call(Map pipelineParams) {
         stages {
             stage('Set Build Vars') {
                 steps {
-                    setDockerBuildVars(
-                        appName: "${pipelineParams.appName}"
-                    ) 
+                    setDockerBuildVars(appName: "${pipelineParams.appName}")
                 }
             }
             stage('Checkout Git') {
