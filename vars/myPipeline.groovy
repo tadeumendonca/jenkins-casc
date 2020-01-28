@@ -73,10 +73,10 @@ def call(Map pipelineParams) {
                     }
                 }
                 post {
-                    always {
+                    // always {
                         // archiveArtifacts artifacts: "${env.ARTIFACT_NAME}", fingerprint: true
                         // sh "rm ${env.ARTIFACT_NAME}"
-                    }
+                    // }
                 }
             }
         }
