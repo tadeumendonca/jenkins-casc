@@ -14,7 +14,7 @@ def call(Map pipelineParams) {
                 steps {
                     loadProperties()
                     setDockerBuildVars(appName: "${pipelineParams.appName}")
-                    verboseEnvVars
+                    verboseEnvVars()
                 }
             }
             stage('Checkout Git') {
