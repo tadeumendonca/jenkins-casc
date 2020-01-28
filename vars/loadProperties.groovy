@@ -1,7 +1,8 @@
 def call(Map stageParams) { 
     def props = readProperties file: 'jenkins.properties'
 
-    props.each { 
-      env[$it.key] = $it.value 
+    for (entry in props) {
+        env["${entry.key}"] = "${entry.value}"
     }
+
   }
