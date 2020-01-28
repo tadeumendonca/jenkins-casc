@@ -5,12 +5,13 @@ def call(Map pipelineParams) {
     }
     pipeline {
         agent any
-        node {
-            for(e in env){
-                echo e + " is " + ${e}
-            }
-        }
         stages {
+            stage('Verbose Env Vars') {
+                agent { label 'master' }
+                steps {
+                    sh "printenv | sort"
+                }
+            }
             stage('Checkout Git') {
                 steps{
                     gitCheckout()
