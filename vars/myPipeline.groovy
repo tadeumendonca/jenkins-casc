@@ -6,11 +6,17 @@ def call(Map pipelineParams) {
     pipeline {
         agent any
         options {
+            skipDefaultCheckout(true)
             disableConcurrentBuilds()
             timeout(time: 1, unit: 'HOURS') 
         }
         stages {
-            stage('Prepare') {
+            stage('Checkout Git') {
+                steps{
+                    gitCheckout()
+                }
+            }
+            stage('Prepare Env') {
                 steps {
                     loadProperties()
                     setDockerBuildVars(appName: "${pipelineParams.appName}")
