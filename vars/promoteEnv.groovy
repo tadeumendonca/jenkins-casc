@@ -1,11 +1,3 @@
 def call(Map stageParams) { 
-    def statusCode = input(message: "Promote to ${stageParams.environment}?", ok: 'Proceed')
-    echo "InputReturnCode=${statusCode}"
-    // Check result
-    if ( statusCode != 'Proceed'){
-        currentBuild.result = 'FAILURE'
-        error('Failed to Promote Env')
-    } else {
-        currentBuild.result = 'SUCCESS'
-    }
+    input(message: "Promote to ${stageParams.environment}?", ok: 'Promote')
   }
