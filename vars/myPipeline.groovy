@@ -1,5 +1,7 @@
 def call(Map pipelineParams) {
-    // 
+    environment {
+        BUILD_TAG = "${pipelineParams.appName}:${env.BUILD_ID}"
+    }
     pipeline {
         agent any
         stages {
@@ -11,7 +13,7 @@ def call(Map pipelineParams) {
             stage('Build') {
                 steps{
                     script{
-                        sh "docker build -t ${pipelineParams.appName}:${env.BUILD_ID} ."
+                        sh "docker build -t ${BUILD_TAG} ."
                     }
                 }
             }
