@@ -22,7 +22,7 @@ def call(Map pipelineParams) {
             }
             stage('Build') {
                 steps{
-                    sh "docker build -t ${env.IMAGE_NAME} ."
+                    dockerBuild(imageName: "${pipelineParams.appName}")
                 }
             }
             stage('Unit Test') {
