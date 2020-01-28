@@ -1,5 +1,5 @@
 def call(Map stageParams) { 
-    def statusCode = input message: "Promote to ${stageParams.environment}?", ok: 'Proceed'
+    def statusCode = input(message: "Promote to ${stageParams.environment}?", ok: 'Proceed')
 
     // Check result
     if ( statusCode != 'Proceed'){
