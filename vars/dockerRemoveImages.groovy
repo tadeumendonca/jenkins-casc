@@ -5,7 +5,7 @@ def call(Map stageParams) {
 
     imageListString.split("\n").each {image ->
         if(image != ""){
-            def statusCode = sh label: 'Remove Image', returnStatus: true, script: "docker image rm ${image}"
+            def statusCode = sh label: 'Remove Image', returnStatus: true, script: "docker image rm -f ${image}"
         
             // Check result
             if ( statusCode != 0 ){
