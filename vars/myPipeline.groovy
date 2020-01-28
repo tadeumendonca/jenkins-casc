@@ -38,15 +38,21 @@ def call(Map pipelineParams) {
                 }
                 post {
                     always {
-                    step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/cobertura-coverage.xml'])
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/cobertura-coverage.xml'])
                     }
                 }
             }
             stage('Remove Temp Items') {
                 steps{
                     script{
+                        sh "docker save ${env.IMAGE_NAME} | gzip -c > ${env.IMAGE_NAME}.tar.gz"
                         sh "docker image rm ${env.IMAGE_NAME}"
                         sh "docker rm ${env.BUILD_CONTAINER_ID}"
+                    }
+                }
+                post {
+                    always {
+                        archiveArtifacts artifacts: '*.tar.gz', fingerprint: true
                     }
                 }
             }
