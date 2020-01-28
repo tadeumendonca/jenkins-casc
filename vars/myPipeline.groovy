@@ -1,7 +1,7 @@
 def call(Map pipelineParams) {
     environment {
-        IMAGE_NAME = "${pipelineParams.appName}:${BUILD_ID}"
-        BUILD_CONTAINER_ID = "test_${BUILD_TIMESTAMP}"
+        IMAGE_NAME = ''
+        BUILD_CONTAINER_ID = ''
     }
     pipeline {
         agent any
@@ -10,7 +10,9 @@ def call(Map pipelineParams) {
                 agent { label 'master' }
                 steps {
                     script{
-                        sh "printenv | sort"
+                        
+                        env.IMAGE_NAME="${pipelineParams.appName}:${BUILD_ID}"
+                        env.BUILD_CONTAINER_ID="test_${BUILD_TIMESTAMP}"
                         echo "IMAGE_NAME=${env.IMAGE_NAME}"
                         echo "BUILD_CONTAINER_ID=${env.BUILD_CONTAINER_ID}"
                     }   
