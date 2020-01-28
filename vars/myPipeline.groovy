@@ -1,8 +1,8 @@
 def call(Map pipelineParams) {
-
+    // 
     pipeline {
         agent any
-        tools {nodejs "NodeJS"}
+        agent { dockerfile true }
         stages {
             stage('Checkout Git') {
                 steps{
@@ -12,7 +12,7 @@ def call(Map pipelineParams) {
             stage('Build') {
                 steps{
                     script{
-                        sh 'npm run docker:build'
+                        sh "docker build -t ${pipelineParams.appName} ."
                     }
                 }
             }
