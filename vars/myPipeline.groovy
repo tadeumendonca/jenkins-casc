@@ -6,6 +6,7 @@ def call(Map pipelineParams) {
     pipeline {
         agent any
         options {
+            disableConcurrentBuilds()
             timeout(time: 1, unit: 'HOURS') 
         }
         stages {
