@@ -1,6 +1,6 @@
 def call(Map stageParams) { 
     def statusCode = input(message: "Promote to ${stageParams.environment}?", ok: 'Proceed')
-
+    echo ${statusCode}
     // Check result
     if ( statusCode != 'Proceed'){
         currentBuild.result = 'FAILURE'
