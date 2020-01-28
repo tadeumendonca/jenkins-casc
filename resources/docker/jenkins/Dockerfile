@@ -19,6 +19,12 @@ apt-get -y install docker-ce
 
 RUN apt-get install -y docker-ce
 
+# Install Docker Compose
+RUN curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+RUN sudo chmod +x /usr/local/bin/docker-compose
+
+# Change Permissions
 RUN usermod -a -G docker jenkins
 
 USER jenkins
