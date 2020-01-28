@@ -13,9 +13,7 @@ def call(Map pipelineParams) {
             stage('Set Build Vars') {
                 steps {
                     setDockerBuildVars(
-                        appName: "${pipelineParams.appName}",
-                        buildId: "${BUILD_ID}", 
-                        buildTimestamp: "${BUILD_TIMESTAMP}"
+                        appName: "${pipelineParams.appName}"
                     ) 
                 }
             }
