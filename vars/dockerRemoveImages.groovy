@@ -4,14 +4,15 @@ def call(Map stageParams) {
     def list = []
 
     imageListString.split("\n").each {image ->
-        def statusCode = sh label: 'Remove Image', returnStatus: true, script: "docker image rm ${image}"
+        if(image != ""){
+            def statusCode = sh label: 'Remove Image', returnStatus: true, script: "docker image rm ${image}"
         
-        // Check result
-        if ( statusCode != 0 ){
-            currentBuild.result = 'FAILURE'
-            error('Failed to Remove Image')
-        } 
+            // Check result
+            if ( statusCode != 0 ){
+                currentBuild.result = 'FAILURE'
+                error('Failed to Remove Image')
+            } 
+        }
     }
-    
     currentBuild.result = 'SUCCESS'
   }
