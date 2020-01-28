@@ -37,7 +37,7 @@ def call(Map pipelineParams) {
             }
             stage('Promote to STAGE?') {
                 steps{
-                    input 'Promote to STAGE?'
+                    promoteEnv(environment: 'STAGE')
                 }
             }
             stage('Deploy STAGE') {
@@ -50,7 +50,7 @@ def call(Map pipelineParams) {
             }
             stage('Promote to PROD?') {
                 steps{
-                    input 'Promote to PROD?'
+                    promoteEnv(environment: 'PROD')
                 }
             }
             stage('Deploy PROD') {
