@@ -9,7 +9,11 @@ def call(Map pipelineParams) {
             stage('Verbose Env Vars') {
                 agent { label 'master' }
                 steps {
-                    sh "printenv | sort"
+                    script{
+                        sh "printenv | sort"
+                        echo "${env.IMAGE_NAME}"
+                        echo "${env.BUILD_CONTAINER_ID}"
+                    }   
                 }
             }
             stage('Checkout Git') {
