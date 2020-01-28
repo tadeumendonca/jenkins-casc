@@ -19,8 +19,6 @@ apt-get -y install docker-ce
 
 RUN apt-get install -y docker-ce
 
-COPY ./daemon.json /etc/docker/daemon.json
-
 RUN usermod -a -G docker jenkins
 
 USER jenkins
