@@ -27,11 +27,6 @@ def call(Map pipelineParams) {
                 steps{
                     dockerBuild(appName: "${pipelineParams.appName}", imageName: "${env.IMAGE_NAME}")
                 }
-                post{
-                    always{
-                        sh "docker rm ${env.BUILD_CONTAINER_ID}"
-                    }
-                }
             }
             stage('Unit Test') {
                 steps{
@@ -40,6 +35,7 @@ def call(Map pipelineParams) {
                 post {
                     always {
                         step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/cobertura-coverage.xml'])
+                        sh "docker rm ${env.BUILD_CONTAINER_ID}"
                     }
                 }
             }
