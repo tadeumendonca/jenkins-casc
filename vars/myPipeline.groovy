@@ -54,7 +54,7 @@ def call(Map pipelineParams) {
                 }
                 post {
                     always {
-                        archiveArtifacts artifacts: '*.tar.gz', fingerprint: true
+                        archiveArtifacts artifacts: "${env.ARTIFACT_NAME}.tar.gz", fingerprint: true
                         sh "rm ${env.IMAGE_NAME}-*.tar.gz"
                     }
                 }
