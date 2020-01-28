@@ -12,14 +12,14 @@ def call(Map pipelineParams) {
             stage('Build') {
                 steps{
                     script{
-                        sh 'npm run build'
+                        sh 'npm run docker:build'
                     }
                 }
             }
             stage('Unit Test') {
                 steps{
                     script{
-                        sh 'docker run -p 3001:3000 -v $(pwd)/coverage:/app/coverage express-app-testing-demo npm run test'
+                        sh 'npm run docker:test'
                     }
                 }
                 post {
