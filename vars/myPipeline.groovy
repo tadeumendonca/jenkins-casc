@@ -22,15 +22,12 @@ def call(Map pipelineParams) {
             }
             stage('Build') {
                 steps{
-                    dockerBuild(imageName: "${pipelineParams.appName}")
+                    dockerBuild(appName: "${pipelineParams.appName}")
                 }
             }
             stage('Unit Test') {
                 steps{
-                    script{
-                        sh "docker run -p 3001:3000 --name ${env.BUILD_CONTAINER_ID} ${pipelineParams.appName} npm run test"
-                        sh "docker cp ${env.BUILD_CONTAINER_ID}:/app/coverage ${env.WORKSPACE}/coverage"
-                    }
+                    dockerNodeUnitTest(appName: "${pipelineParams.appName}")
                 }
                 post {
                     always {
