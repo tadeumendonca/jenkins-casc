@@ -64,7 +64,7 @@ def call(Map pipelineParams) {
                     }
                 }
             }
-            stage('Clean Items') {
+            stage('Clean Build Items') {
                 steps{
                     script{
                         sh "docker save ${env.IMAGE_NAME} | gzip -c > ${env.ARTIFACT_NAME}"
