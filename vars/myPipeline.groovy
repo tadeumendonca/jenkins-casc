@@ -10,16 +10,16 @@ def call(Map pipelineParams) {
             timeout(time: 1, unit: 'HOURS') 
         }
         stages {
+            stage('Checkout Git') {
+                steps{
+                    gitCheckout()
+                }
+            }
             stage('Prepare') {
                 steps {
                     loadProperties()
                     setDockerBuildVars(appName: "${pipelineParams.appName}")
                     verboseEnvVars()
-                }
-            }
-            stage('Checkout Git') {
-                steps{
-                    gitCheckout()
                 }
             }
             stage('Build') {
