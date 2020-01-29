@@ -9,3 +9,7 @@ This main repository has been set up according to Jenkins Pipeline Library requi
 ## Overview
 This example implements the following architecture:
 ![CI Architecture](/resources/images/JenkinsConfigAsCode-Overview.jpg)
+
+## Getting Started
+To spin up the CI Server, just open directory resources/docker and execute the following script that will start your docker compose app.
+> ./compose-up.sh
