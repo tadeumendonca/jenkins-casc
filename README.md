@@ -11,5 +11,5 @@ This example implements the following architecture:
 ![CI Architecture](/resources/images/JenkinsConfigAsCode-Overview.jpg)
 
 ## Getting Started
-To spin up the CI Server, just open directory resources/docker and execute the following script that will start your docker compose app.
+To spin up the CI Server, just open resources/docker directory and execute the following script that will start your docker compose app.
 > ./compose-up.sh
